@@ -37,18 +37,11 @@ class MainActivity : AppCompatActivity() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("My Title")
             .setMessage("My Long long long long messages")
-            .setPositiveButton("OK", object : DialogInterface.OnClickListener {
-                override fun onClick(dialog: DialogInterface?, which: Int) {
-                    // do Some thing
-                }
-
-            })
-            .setNegativeButton("Cancel", object : DialogInterface.OnClickListener {
-                override fun onClick(dialog: DialogInterface?, which: Int) {
-                    dialog?.dismiss()
-                }
-
-            })
+            .setPositiveButton("OK") { _, _ ->
+                // do Some thing
+            }
+            .setNegativeButton("Cancel"
+            ) { dialog, _ -> dialog?.dismiss() }
 
         val myDialog = builder.create();
         myDialog.show()
