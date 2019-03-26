@@ -16,16 +16,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)   // Khai báo layout
-
-
-        tvUserName.text = "Android KHTN"
-        btnLogin.text = "Register"
-
+        setContentView(R.layout.activity_main)
 
         btnLogin.setOnClickListener {
-            // Khai báo listener khi click button
-            Log.d("YourTagName", "Clicked Button Login")
+            // DO something here
             showDialog()
         }
 
