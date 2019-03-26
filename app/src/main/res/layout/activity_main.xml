@@ -9,33 +9,11 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
-
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/tvUserName"
-            android:text="Hello World!"
-            android:textColor="#ad9ee8"
-            android:lines="2"
-            android:padding="2dp"
-            android:textSize="20dp"/>
-
-
-    <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/edtUserName"
-            android:text="UserName"
-            android:hint="Enter your User name"
-            android:textSize="12dp"
-            android:maxLines="3"
-            android:textColor="#a9e883"/>
-
-
     <Button
+            android:background="@color/colorPrimaryDark"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Login"
+            android:text="go To SettingS Creen"
             android:id="@+id/btnLogin"
             android:textColor="#a9e883"
             android:padding="12dp"

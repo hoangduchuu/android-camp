@@ -1,0 +1,31 @@
+package com.khtn.androidcamp
+
+import android.support.v7.app.AppCompatActivity
+import android.os.Bundle
+import kotlinx.android.synthetic.main.activity_setting_background.*
+
+class SettingBackgroundActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_setting_background)
+
+        val data = intent.extras
+
+        if (data != null) {
+            val age = data.getInt("age")
+            val name = data.getString("name")
+            val isMale = data.getBoolean("isMale")
+
+            val info = "- Name: $name \n- Age: $age \n- Gender: ${getGender(isMale)}"
+            tvUserInfo.text = info
+        }
+    }
+
+    private fun getGender(isMale: Boolean): String {
+        return when {
+            isMale -> "Male"
+            else -> "FeMale"
+        }
+    }
+}

@@ -3,6 +3,7 @@ package com.khtn.androidcamp
 import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.DialogInterface
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
@@ -20,28 +21,19 @@ class MainActivity : AppCompatActivity() {
 
         btnLogin.setOnClickListener {
             // DO something here
-            showDialog()
+            gotoSettingScreen()
         }
 
-
     }
 
-    private fun showDialog() {
-
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("My Title")
-            .setMessage("My Long long long long messages")
-            .setPositiveButton("OK") { _, _ ->
-                // do Some thing
-            }
-            .setNegativeButton("Cancel"
-            ) { dialog, _ -> dialog?.dismiss() }
-
-        val myDialog = builder.create();
-        myDialog.show()
-
-
+    private fun gotoSettingScreen() {
+        val intent = Intent(this, SettingBackgroundActivity::class.java)
+        intent.putExtra("age", 12)
+        intent.putExtra("name", "I'm Android")
+        intent.putExtra("isMale", true)
+        startActivity(intent)
     }
+
 }
 
 
