@@ -1,11 +1,10 @@
 package com.khtn.androidcamp
 
 import android.annotation.SuppressLint
-import android.app.Dialog
-import android.content.DialogInterface
+import android.app.Activity
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v7.app.AlertDialog
 import android.util.Log
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -16,37 +15,35 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)   // Khai báo layout
-
-
-        tvUserName.text = "Android KHTN"
-        btnLogin.text = "Register"
-
+        setContentView(R.layout.activity_main)
 
         btnLogin.setOnClickListener {
-            // Khai báo listener khi click button
-            Log.d("YourTagName", "Clicked Button Login")
-            showDialog()
+            // DO something here
+            gotoSettingScreen()
         }
-
 
     }
 
-    private fun showDialog() {
+    private fun gotoSettingScreen() {
+        val intent = Intent(this, SettingBackgroundActivity::class.java)
+        startActivityForResult(intent, REQUEST_SETTING_CODE)
+    }
 
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("My Title")
-            .setMessage("My Long long long long messages")
-            .setPositiveButton("OK") { _, _ ->
-                // do Some thing
-            }
-            .setNegativeButton("Cancel"
-            ) { dialog, _ -> dialog?.dismiss() }
+    companion object {
+        const val REQUEST_SETTING_CODE = 1099;
+    }
 
-        val myDialog = builder.create();
-        myDialog.show()
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_SETTING_CODE && resultCode == Activity.RESULT_OK) {
+            val backgroundUrl = data?.getStringExtra("background")
+            val isDarkMode = data?.getBooleanExtra("isDarkMode", false)
+            handleSettingValues(backgroundUrl,isDarkMode)
+        }
+    }
 
-
+    private fun handleSettingValues(backgroundUrl: String?, darkMode: Boolean?) {
+        // do something with data
     }
 }
 
