@@ -6,39 +6,24 @@
         android:layout_width="match_parent"
         tools:ignore="HardcodedText"
         android:orientation="vertical"
+        android:gravity="center"
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
 
-    <TextView
+    <Switch
+            android:id="@+id/swTv"
+            android:padding="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tvUserName"
-            android:text="Hello World!"
-            android:textColor="#ad9ee8"
-            android:lines="2"
-            android:padding="2dp"
-            android:textSize="20dp"/>
+            android:text="Tivi "/>
 
-
-    <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/edtUserName"
-            android:text="UserName"
-            android:hint="Enter your User name"
-            android:textSize="12dp"
-            android:maxLines="3"
-            android:textColor="#a9e883"/>
-
-
-    <Button
+    <Switch
+            android:id="@+id/swLaptop"
+            android:padding="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Login"
-            android:id="@+id/btnLogin"
-            android:textColor="#a9e883"
-            android:padding="12dp"
-    />
+            android:checked="true"
+            android:text="Laptop "/>
 
 </LinearLayout>

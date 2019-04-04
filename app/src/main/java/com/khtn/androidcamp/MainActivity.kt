@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.util.Log
+import android.widget.CompoundButton
 import kotlinx.android.synthetic.main.activity_main.*
 
 @SuppressLint("SetTextI18n")
@@ -19,35 +20,20 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)   // Khai báo layout
 
 
-        tvUserName.text = "Android KHTN"
-        btnLogin.text = "Register"
-
-
-        btnLogin.setOnClickListener {
-            // Khai báo listener khi click button
-            Log.d("YourTagName", "Clicked Button Login")
-            showDialog()
+        swTv.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                // turn on TV
+                Log.e("KHTH", "turn on TV")
+            } else {
+                Log.e("KHTH", "turn OFF TV")
+            }
         }
 
 
-    }
-
-    private fun showDialog() {
-
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("My Title")
-            .setMessage("My Long long long long messages")
-            .setPositiveButton("OK") { _, _ ->
-                // do Some thing
-            }
-            .setNegativeButton("Cancel"
-            ) { dialog, _ -> dialog?.dismiss() }
-
-        val myDialog = builder.create();
-        myDialog.show()
-
 
     }
+
+
 }
 
 
