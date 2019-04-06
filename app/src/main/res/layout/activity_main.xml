@@ -41,4 +41,8 @@
             android:padding="12dp"
     />
 
+    <ImageView android:layout_width="100dp"
+               android:id="@+id/ivLogo"
+               android:layout_height="100dp"/>
+
 </LinearLayout>

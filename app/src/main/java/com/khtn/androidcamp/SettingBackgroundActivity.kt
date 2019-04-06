@@ -30,7 +30,7 @@ class SettingBackgroundActivity : AppCompatActivity() {
     }
 
     private fun handleOnBackScreen() {
-        val url = "https://vnexpress.net/logo.gif"
+        val url = "https://s.vnecdn.net/vnexpress/restruct/i/v47/graphics/img_logo_vne_web.gif"
         val intent = Intent()
         intent.putExtra("background", url);
         intent.putExtra("isDarkMode", false)

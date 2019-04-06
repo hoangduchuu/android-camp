@@ -6,6 +6,7 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
 
 @SuppressLint("SetTextI18n")
@@ -44,6 +45,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun handleSettingValues(backgroundUrl: String?, darkMode: Boolean?) {
         // do something with data
+        Picasso.get().load(backgroundUrl).into(ivLogo)
     }
 }
 
