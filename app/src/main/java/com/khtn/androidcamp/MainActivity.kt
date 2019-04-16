@@ -16,37 +16,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)   // Khai báo layout
-
-
-        tvUserName.text = "Android KHTN"
-        btnLogin.text = "Register"
-
-
-        btnLogin.setOnClickListener {
-            // Khai báo listener khi click button
-            Log.d("YourTagName", "Clicked Button Login")
-            showDialog()
-        }
-
-
-    }
-
-    private fun showDialog() {
-
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("My Title")
-            .setMessage("My Long long long long messages")
-            .setPositiveButton("OK") { _, _ ->
-                // do Some thing
-            }
-            .setNegativeButton("Cancel"
-            ) { dialog, _ -> dialog?.dismiss() }
-
-        val myDialog = builder.create();
-        myDialog.show()
-
-
+        setContentView(R.layout.activity_main)
     }
 }
 
