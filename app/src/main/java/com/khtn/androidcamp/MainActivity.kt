@@ -20,7 +20,7 @@ import android.widget.LinearLayout.HORIZONTAL
 class MainActivity : AppCompatActivity() {
 
     var students: ArrayList<Student> = ArrayList()
-    lateinit var studentAdapter : StudentAdapter
+    lateinit var studentAdapter: StudentAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,11 +33,30 @@ class MainActivity : AppCompatActivity() {
         rvStudents.layoutManager = LinearLayoutManager(this) as RecyclerView.LayoutManager?
 
         studentAdapter = StudentAdapter(students, this)
-        
+
         rvStudents.adapter = studentAdapter
 
+        studentAdapter.setListener(studentItemCLickListener)
+
     }
-    
+
+    private val studentItemCLickListener = object : StudentItemCLickListener {
+        override fun onItemCLicked(position: Int) {
+            // copy một dòng khi click
+            students.add(position+1,Student(
+                students[position].name + " Copy ",
+                students[position].classz + " Copy " ))
+            studentAdapter.setData(students)
+        }
+
+        override fun onItemLongCLicked(position: Int) {
+            // xoa 1 dong khi long click
+            students.removeAt(position)
+            studentAdapter.setData(students)
+
+        }
+
+    }
 
     private fun addStudents() {
         students.add(Student("Nguyen QUang Hai", " Ha Noi FC"))

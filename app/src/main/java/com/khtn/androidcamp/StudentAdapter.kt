@@ -1,4 +1,5 @@
 package com.khtn.androidcamp
+
 import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -9,7 +10,9 @@ import kotlinx.android.synthetic.main.item_student.view.*
 /**
  * Created by Huu Hoang on 4/17/19.
  */
-class StudentAdapter(val items: ArrayList<Student>, val context: Context) : RecyclerView.Adapter<StudentViewHolder>() {
+class StudentAdapter(var items: ArrayList<Student>, val context: Context) : RecyclerView.Adapter<StudentViewHolder>() {
+
+    lateinit var mListener: StudentItemCLickListener
 
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int): StudentViewHolder {
         return StudentViewHolder(LayoutInflater.from(context).inflate(R.layout.item_student, parent, false))
@@ -20,8 +23,26 @@ class StudentAdapter(val items: ArrayList<Student>, val context: Context) : Recy
     }
 
     override fun onBindViewHolder(studentViewHolder: StudentViewHolder, position: Int) {
-        studentViewHolder.tvName.text = items[position].name
+        studentViewHolder.tvName.text = "#$position ${items[position].name}"
         studentViewHolder.tvClass.text = items[position].classz
+
+        studentViewHolder.itemView.setOnClickListener {
+            mListener.onItemCLicked(position)
+        }
+
+        studentViewHolder.itemView.setOnLongClickListener {
+            mListener.onItemLongCLicked(position)
+            true
+        }
+    }
+
+    fun setListener(listener: StudentItemCLickListener) {
+        this.mListener = listener
+    }
+
+    fun setData(items: ArrayList<Student>){
+        this.items = items
+        notifyDataSetChanged()
     }
 
 }
