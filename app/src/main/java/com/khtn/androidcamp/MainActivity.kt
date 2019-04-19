@@ -50,12 +50,27 @@ class MainActivity : AppCompatActivity() {
         }
 
         override fun onItemLongCLicked(position: Int) {
-            // xoa 1 dong khi long click
-            students.removeAt(position)
-            studentAdapter.setData(students)
+            val builder = AlertDialog.Builder(this@MainActivity)
+            builder.setTitle("Confirmation")
+                .setMessage("Remove ${students[position].name} ?")
+                .setPositiveButton("OK") { _, _ ->
+                    removeItem(position)
+                }
+                .setNegativeButton(
+                    "Cancel"
+                ) { dialog, _ -> dialog?.dismiss() }
+
+            val myDialog = builder.create();
+            myDialog.show()
+
 
         }
 
+    }
+
+    private fun removeItem(position: Int) {
+        students.removeAt(position)
+        studentAdapter.setData(students)
     }
 
     private fun addStudents() {
