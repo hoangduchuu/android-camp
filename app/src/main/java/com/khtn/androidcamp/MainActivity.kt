@@ -6,13 +6,12 @@ import android.content.DialogInterface
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.*
 import android.util.Log
 import kotlinx.android.synthetic.main.activity_main.*
-import android.support.v7.widget.DividerItemDecoration
 import android.widget.LinearLayout
 import android.widget.LinearLayout.HORIZONTAL
+import android.widget.LinearLayout.VERTICAL
 
 @SuppressLint("SetTextI18n")
 
@@ -30,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         addStudents()
 
         // setup layout manager and recyclerview
-        rvStudents.layoutManager = LinearLayoutManager(this) as RecyclerView.LayoutManager?
+        rvStudents.layoutManager = StaggeredGridLayoutManager(2, VERTICAL)
 
         studentAdapter = StudentAdapter(students, this)
         
