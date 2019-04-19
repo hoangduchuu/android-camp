@@ -3,6 +3,7 @@ package com.khtn.androidcamp
 import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.DialogInterface
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
@@ -36,24 +37,23 @@ class MainActivity : AppCompatActivity() {
 
         rvStudents.adapter = studentAdapter
 
-        studentAdapter.setListener(studentItemCLickListener)
 
+
+        studentAdapter.setListener(studentItemCLickListener)
     }
 
     private val studentItemCLickListener = object : StudentItemCLickListener {
         override fun onItemCLicked(position: Int) {
-            // copy một dòng khi click
-            students.add(
-                position + 1, Student(
-                    students[position].name + " Copy ",
-                    students[position].classz + " Copy ",
-                    students[position].avatar
-                )
-            )
-            studentAdapter.setData(students)
-        }
 
+            val intent = Intent(this@MainActivity,ProfileActivity::class.java)
+            intent.putExtra(STUDENT_NAME_KEY, students[position].name)
+            intent.putExtra(STUDENT_AVATAR_KEY, students[position].avatar)
+            intent.putExtra(STUDENT_CLUB_KEY, students[position].classz)
+            startActivity(intent)
+
+        }
         override fun onItemLongCLicked(position: Int) {
+            
             val builder = AlertDialog.Builder(this@MainActivity)
             builder.setTitle("Confirmation")
                 .setMessage("Remove ${students[position].name} ?")
@@ -66,10 +66,7 @@ class MainActivity : AppCompatActivity() {
 
             val myDialog = builder.create();
             myDialog.show()
-
-
         }
-
     }
 
     private fun removeItem(position: Int) {
