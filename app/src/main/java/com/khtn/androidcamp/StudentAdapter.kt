@@ -27,7 +27,7 @@ class StudentAdapter(var items: ArrayList<Student>, val context: Context) : Recy
         studentViewHolder.tvName.text = "#$position ${items[position].name}"
         studentViewHolder.tvClass.text = items[position].classz
         Glide.with(context)
-            .load( items[position].avatar)
+            .load( context.drawableByName( items[position].avatar))
             .centerCrop()
             .placeholder(R.drawable.student_place_holder)
             .into(studentViewHolder.ivAvatar)

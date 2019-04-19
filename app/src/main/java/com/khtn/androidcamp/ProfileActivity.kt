@@ -20,7 +20,7 @@ class ProfileActivity : AppCompatActivity() {
         if (data != null) {
             val name = data.getString(STUDENT_NAME_KEY)
             val classz = data.getString(STUDENT_CLUB_KEY)
-            val avatar = data.getInt(STUDENT_AVATAR_KEY)
+            val avatar = data.getString(STUDENT_AVATAR_KEY)
 
 
             tvClass.text = name
@@ -28,7 +28,7 @@ class ProfileActivity : AppCompatActivity() {
             tvName02.text = name
             tvClass.text = classz
             Glide.with(this)
-                .load( avatar)
+                .load( drawableByName(avatar))
                 .centerCrop()
                 .placeholder(R.drawable.student_place_holder)
                 .into(ivHeader)
