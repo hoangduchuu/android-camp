@@ -43,9 +43,13 @@ class MainActivity : AppCompatActivity() {
     private val studentItemCLickListener = object : StudentItemCLickListener {
         override fun onItemCLicked(position: Int) {
             // copy một dòng khi click
-            students.add(position+1,Student(
-                students[position].name + " Copy ",
-                students[position].classz + " Copy " ))
+            students.add(
+                position + 1, Student(
+                    students[position].name + " Copy ",
+                    students[position].classz + " Copy ",
+                    students[position].avatar
+                )
+            )
             studentAdapter.setData(students)
         }
 
@@ -74,16 +78,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun addStudents() {
-        students.add(Student("Nguyen QUang Hai", " Ha Noi FC"))
-        students.add(Student("Bui Tien Dung", " Ha Noi FC"))
-        students.add(Student("Duy Manh", " Ha Noi FC"))
-        students.add(Student("Cong Phuong", " HAGL FC"))
-        students.add(Student("Van Toan", " HAGL FC"))
-        students.add(Student("Huynh Duc", " Da Nang FC"))
-        students.add(Student("Vinh Rau", " FAP TV"))
-        students.add(Student("Cong Vinh", " Nghe An FC"))
-        students.add(Student("Anh Duc", " Binh Duong FC"))
-        students.add(Student("Dinh Manh Ninh", "M4U"))
+        students.add(Student("Nguyen Quang Hai", " Ha Noi FC", R.drawable.quanghai))
+        students.add(Student("Bui Tien Dung", " Ha Noi FC", R.drawable.buitiendung))
+        students.add(Student("Duy Manh", " Ha Noi FC", R.drawable.duymanh))
+        students.add(Student("Cong Phuong", " HAGL FC", R.drawable.congphuong))
+        students.add(Student("Van Toan", " HAGL FC", R.drawable.vantoan))
+        students.add(Student("Huynh Duc", " Da Nang FC", R.drawable.huynhduc))
+        students.add(Student("Vinh Rau", " FAP TV", R.drawable.vinhrau))
+        students.add(Student("Cong Vinh", " Nghe An FC", R.drawable.conhvinh))
+        students.add(Student("Anh Duc", " Binh Duong FC",R.drawable.anhduc))
+        students.add(Student("Dinh Manh Ninh", "M4U", R.drawable.dmninh))
     }
 }
 

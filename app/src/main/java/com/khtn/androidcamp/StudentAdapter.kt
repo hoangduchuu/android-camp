@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_student.view.*
 
 /**
@@ -25,6 +26,12 @@ class StudentAdapter(var items: ArrayList<Student>, val context: Context) : Recy
     override fun onBindViewHolder(studentViewHolder: StudentViewHolder, position: Int) {
         studentViewHolder.tvName.text = "#$position ${items[position].name}"
         studentViewHolder.tvClass.text = items[position].classz
+        Glide.with(context)
+            .load( items[position].avatar)
+            .centerCrop()
+            .placeholder(R.drawable.student_place_holder)
+            .into(studentViewHolder.ivAvatar)
+
 
         studentViewHolder.itemView.setOnClickListener {
             mListener.onItemCLicked(position)
@@ -50,4 +57,5 @@ class StudentAdapter(var items: ArrayList<Student>, val context: Context) : Recy
 class StudentViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     var tvName = view.tvName
     var tvClass = view.tvClass
+    var ivAvatar = view.ivAvatar
 }
