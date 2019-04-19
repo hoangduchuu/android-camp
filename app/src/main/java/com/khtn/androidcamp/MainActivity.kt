@@ -48,9 +48,7 @@ class MainActivity : AppCompatActivity() {
         override fun onItemCLicked(position: Int) {
 
             val intent = Intent(this@MainActivity,ProfileActivity::class.java)
-            intent.putExtra(STUDENT_NAME_KEY, students[position].name)
-            intent.putExtra(STUDENT_AVATAR_KEY, students[position].avatar)
-            intent.putExtra(STUDENT_CLUB_KEY, students[position].classz)
+            intent.putExtra(STUDENT_KEY, students[position])
             startActivity(intent)
 
         }

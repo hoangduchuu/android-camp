@@ -18,17 +18,15 @@ class ProfileActivity : AppCompatActivity() {
         val data = intent.extras
 
         if (data != null) {
-            val name = data.getString(STUDENT_NAME_KEY)
-            val classz = data.getString(STUDENT_CLUB_KEY)
-            val avatar = data.getString(STUDENT_AVATAR_KEY)
+            val student = data.getParcelable(STUDENT_KEY) as Student
 
 
-            tvClass.text = name
-            tvName.text = name
-            tvName02.text = name
-            tvClass.text = classz
+            tvClass.text = student.classz
+            tvName.text = student.name
+            tvName02.text = student.name
+            tvClass.text = student.classz
             Glide.with(this)
-                .load( drawableByName(avatar))
+                .load( drawableByName(student.avatar))
                 .centerCrop()
                 .placeholder(R.drawable.student_place_holder)
                 .into(ivHeader)
