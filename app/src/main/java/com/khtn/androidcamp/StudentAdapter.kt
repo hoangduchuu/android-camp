@@ -1,6 +1,7 @@
 package com.khtn.androidcamp
 
 import android.content.Context
+import android.os.Handler
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -42,7 +43,9 @@ class StudentAdapter(var items: ArrayList<Student>, val context: Context) : Recy
 
     fun setData(items: ArrayList<Student>){
         this.items = items
-        notifyDataSetChanged()
+        Handler().postDelayed(Runnable {
+            notifyDataSetChanged()
+        },500)
     }
 
 }

@@ -5,6 +5,7 @@ import android.app.Dialog
 import android.content.DialogInterface
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -43,15 +44,22 @@ class MainActivity : AppCompatActivity() {
     private val studentItemCLickListener = object : StudentItemCLickListener {
         override fun onItemCLicked(position: Int) {
             // copy một dòng khi click
-            students.add(position+1,Student(
-                students[position].name + " Copy ",
-                students[position].classz + " Copy " ))
+            students.add(
+                position + 1, Student(
+                    students[position].name + " Copy ",
+                    students[position].classz + " Copy "
+                )
+            )
             studentAdapter.setData(students)
+            studentAdapter.notifyItemInserted(position + 1)
+
+
         }
 
         override fun onItemLongCLicked(position: Int) {
             // xoa 1 dong khi long click
             students.removeAt(position)
+            studentAdapter.notifyItemRemoved(position)
             studentAdapter.setData(students)
 
         }
