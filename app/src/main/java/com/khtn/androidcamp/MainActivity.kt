@@ -43,6 +43,21 @@ class MainActivity : AppCompatActivity() {
     }
 
     private val studentItemCLickListener = object : StudentItemCLickListener {
+        override fun onInfoItemClicked(position: Int) {
+            // show dia log info
+
+            val builder = AlertDialog.Builder(this@MainActivity)
+            builder.setTitle("User Info")
+                .setMessage("Name: ${students[position].name} ")
+                .setPositiveButton("OK") { _, _ ->
+                    removeItem(position)
+                }
+
+
+            val myDialog = builder.create();
+            myDialog.show()
+        }
+
         override fun onItemCLicked(position: Int) {
 
             val intent = Intent(this@MainActivity,ProfileActivity::class.java)

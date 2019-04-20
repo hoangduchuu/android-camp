@@ -41,6 +41,10 @@ class StudentAdapter(var items: ArrayList<Student>, val context: Context) : Recy
             mListener.onItemLongCLicked(position)
             true
         }
+
+        studentViewHolder.tvInfo.setOnClickListener {
+            mListener.onInfoItemClicked(position)
+        }
     }
 
     fun setListener(listener: StudentItemCLickListener) {
@@ -58,4 +62,5 @@ class StudentViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     var tvName = view.tvName
     var tvClass = view.tvClass
     var ivAvatar = view.ivAvatar
+    var tvInfo = view.tvInfo
 }
