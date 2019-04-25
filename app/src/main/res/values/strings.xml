@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">AndroidCamp</string>
+    <string name="hi_fragment">Hi, This is TextView from Fragment with Statically way</string>
 </resources>

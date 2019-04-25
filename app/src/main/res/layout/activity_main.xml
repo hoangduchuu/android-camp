@@ -10,5 +10,9 @@
         tools:context=".MainActivity">
 
 
-
+    <fragment
+            class="com.khtn.androidcamp.ArticleFragment"
+            android:id="@+id/fmHome"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 </LinearLayout>
