@@ -1,24 +1,25 @@
 package com.khtn.androidcamp
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import kotlinx.android.synthetic.main.register_fragment.*
 
 /**
  * Created by Huu Hoang on 4/25/19.
  */
-class RegisterFragment : Fragment() {
+class RegisterFragment : BaseFragment() {
     interface Listener {
         fun openLoginScreen()
     }
 
-    lateinit var mListener: RegisterFragment.Listener
+    lateinit var mListener: Listener
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.register_fragment, container, false)
+    override fun getTagName(): String {
+        return RegisterFragment::class.java.simpleName
+    }
+
+    override fun inflateView(): Int {
+        return R.layout.register_fragment
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -28,7 +29,7 @@ class RegisterFragment : Fragment() {
         }
     }
 
-    fun setListener(listener: RegisterFragment.Listener) {
+    fun setListener(listener: Listener) {
         mListener = listener
     }
 

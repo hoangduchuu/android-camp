@@ -16,7 +16,6 @@ class MainActivity : AppCompatActivity(),
         setContentView(R.layout.activity_main)
 
         addFirstFragment()
-
     }
 
     private fun addFirstFragment() {
@@ -49,8 +48,8 @@ class MainActivity : AppCompatActivity(),
     override fun openRegisterScreen() {
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         fragmentTransaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
-        fragmentTransaction.add(R.id.flContainer, RegisterFragment())
-        fragmentTransaction.addToBackStack("1")
+        fragmentTransaction.replace(R.id.flContainer, RegisterFragment())
+        fragmentTransaction.addToBackStack(RegisterFragment::class.java.simpleName)
         fragmentTransaction.commit()
     }
 
@@ -62,8 +61,8 @@ class MainActivity : AppCompatActivity(),
     override fun openForgotScreen() {
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         fragmentTransaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
-        fragmentTransaction.add(R.id.flContainer, ForgetPasswordFragment())
-        fragmentTransaction.addToBackStack("1")
+        fragmentTransaction.replace(R.id.flContainer, ForgetPasswordFragment())
+        fragmentTransaction.addToBackStack(ForgetPasswordFragment::class.java.simpleName)
         fragmentTransaction.commit()
     }
 

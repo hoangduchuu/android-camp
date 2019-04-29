@@ -11,27 +11,28 @@ import kotlinx.android.synthetic.main.login_fragment.*
 /**
  * Created by Huu Hoang on 4/25/19.
  */
-class ForgetPasswordFragment : Fragment() {
+class ForgetPasswordFragment : BaseFragment() {
     interface Listener {
         fun openLoginScreen()
     }
 
-    lateinit var mListener: ForgetPasswordFragment.Listener
+    lateinit var mListener: Listener
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.forget_password_fragment, container, false)
+    override fun getTagName(): String {
+        return ForgetPasswordFragment::class.java.simpleName
     }
 
+    override fun inflateView(): Int {
+        return R.layout.forget_password_fragment
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         tvLogin.setOnClickListener {
             mListener.openLoginScreen()
         }
-
-
     }
 
-    fun setListener(listener: ForgetPasswordFragment.Listener) {
+    fun setListener(listener: Listener) {
         mListener = listener
     }
 

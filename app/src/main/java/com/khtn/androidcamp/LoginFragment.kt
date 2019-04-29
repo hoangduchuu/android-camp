@@ -10,7 +10,8 @@ import kotlinx.android.synthetic.main.login_fragment.*
 /**
  * Created by Huu Hoang on 4/25/19.
  */
-class LoginFragment : Fragment() {
+class LoginFragment : BaseFragment() {
+
     interface Listener {
         fun openRegisterScreen()
         fun openForgotScreen()
@@ -18,8 +19,12 @@ class LoginFragment : Fragment() {
 
     lateinit var mListener: LoginFragment.Listener
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.login_fragment, container, false)
+    override fun getTagName(): String {
+        return LoginFragment::class.java.simpleName
+    }
+
+    override fun inflateView(): Int {
+        return R.layout.login_fragment
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
