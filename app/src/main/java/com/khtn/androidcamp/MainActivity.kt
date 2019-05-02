@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.activity_main.*
 import okhttp3.*
 import java.io.IOException
@@ -23,11 +24,20 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun getData(id: String) {
+    private fun getData(teacherName: String) {
         pbLoading.visibility = View.VISIBLE
+
+
         val client = OkHttpClient()
+
+        val teacher = Teacher(teacherName, 1000, 12, 12)
+        val json = Gson().toJson(teacher)
+
+
+        val body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), json)
         val request = Request.Builder()
-            .url("https://jsonplaceholder.typicode.com/todos/$id")
+            .url("http://dummy.restapiexample.com/api/v1/create")
+            .post(body)
             .build()
 
         client.newCall(request)
@@ -42,14 +52,20 @@ class MainActivity : AppCompatActivity() {
 
                 override fun onResponse(call: Call, response: Response) {
                     val json = response.body()!!.string()
-                    val user = Gson().fromJson(json, User::class.java)
+//                    val user = Gson().fromJson(json, User::class.java)
                     runOnUiThread {
-                        tvData.text = user.toString()
+                        tvData.text = json.toString()
                         pbLoading.visibility = View.GONE
                     }
                 }
 
             })
+    }
+
+    private fun getJson(): String {
+        return assets.open("data.json").bufferedReader()
+            .use { it.readText() } // read read offline json from assets folder
+
     }
 }
 
