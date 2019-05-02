@@ -46,9 +46,12 @@ class MainActivity : AppCompatActivity() {
 
     private val studentItemCLickListener = object : StudentItemCLickListener {
         override fun onItemCLicked(position: Int) {
+            var category = Category(categoryId = 1, categoryName = "MacBook")
+            var item = Item(imageId = 2, price = 30.0, title = "MacBook Pro", category = category)
 
             val intent = Intent(this@MainActivity,ProfileActivity::class.java)
             intent.putExtra(STUDENT_KEY, students[position])
+            intent.putExtra(CONSTANT_KEY, item)
             startActivity(intent)
 
         }
