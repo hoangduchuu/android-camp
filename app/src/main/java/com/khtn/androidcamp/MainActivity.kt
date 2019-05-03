@@ -9,6 +9,7 @@ import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.activity_main.*
 import okhttp3.*
 import java.io.IOException
+import java.util.*
 
 @SuppressLint("SetTextI18n")
 
@@ -20,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         btnGetData.setOnClickListener {
-            getData(edtUserID.text.toString())
+            getData("${edtUserID.text.trim()}_${Calendar.getInstance().timeInMillis}")
         }
     }
 
@@ -30,7 +31,7 @@ class MainActivity : AppCompatActivity() {
 
         val client = OkHttpClient()
 
-        val teacher = Teacher(teacherName, 1000, 12, 12)
+        val teacher = Teacher(teacherName, 1000, 12,id = Calendar.getInstance().timeInMillis)
         val json = Gson().toJson(teacher)
 
 

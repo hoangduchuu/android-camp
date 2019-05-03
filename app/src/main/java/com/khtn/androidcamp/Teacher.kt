@@ -5,4 +5,4 @@ package com.khtn.androidcamp
  */
 
 
-data class Teacher(var name:String, val salary:Int, val age:Int, var id:Int)
+data class Teacher(var name:String, val salary:Int, val age:Int, var id:Long)
