@@ -1,19 +1,14 @@
 package com.khtn.androidcamp
 
 import android.annotation.SuppressLint
-import android.app.Dialog
-import android.content.DialogInterface
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import kotlinx.android.synthetic.main.activity_main.*
-import android.support.v7.widget.DividerItemDecoration
-import android.widget.LinearLayout
-import android.widget.LinearLayout.HORIZONTAL
+
 
 @SuppressLint("SetTextI18n")
 
