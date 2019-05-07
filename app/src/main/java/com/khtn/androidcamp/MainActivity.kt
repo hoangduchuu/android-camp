@@ -8,6 +8,8 @@ import android.support.v7.app.AlertDialog
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
+import kotlin.concurrent.schedule
 
 
 @SuppressLint("SetTextI18n")
@@ -66,7 +68,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun removeItem(position: Int) {
         students.removeAt(position)
-        studentAdapter.setData(students)
+        studentAdapter.notifyItemRemoved(position)
+        Timer("SettingUp", false).schedule(500) {
+            runOnUiThread {
+                studentAdapter.setData(students)
+                studentAdapter.notifyDataSetChanged()
+            }
+        }
     }
 
     private fun addStudents() {

@@ -49,7 +49,6 @@ class StudentAdapter(var items: ArrayList<Student>, val context: Context) : Recy
 
     fun setData(items: ArrayList<Student>){
         this.items = items
-        notifyDataSetChanged()
     }
 
 }
