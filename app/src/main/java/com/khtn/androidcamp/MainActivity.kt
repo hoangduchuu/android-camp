@@ -2,7 +2,6 @@ package com.khtn.androidcamp
 
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
@@ -46,20 +45,14 @@ class MainActivity : AppCompatActivity() {
 
     private fun getBackground() {
 
-        val settings = getSharedPreferences(PREFERCENCES_NAME, Context.MODE_PRIVATE)
-        var backgroundUrl = ""
-        if (settings.contains(BACKGROUND_KEY)) {
-            backgroundUrl = settings.getString(BACKGROUND_KEY, "https://www.classicposters.com/images/nopicture.gif")
-        } else {
-            backgroundUrl = "https://www.classicposters.com/images/nopicture.gif"
-        }
-
+        val backgroundUrl = SharedPreferencesHelper.readString(BACKGROUND_KEY)
 
         // use Picasso library load image from internet
         Picasso.get().load(backgroundUrl).into(object : Target {
             override fun onPrepareLoad(placeHolderDrawable: Drawable?) {}
 
-            override fun onBitmapFailed(e: Exception?, errorDrawable: Drawable?) {}
+            override fun onBitmapFailed(e: Exception?, errorDrawable: Drawable?) {
+            }
 
             override fun onBitmapLoaded(bitmap: Bitmap?, from: Picasso.LoadedFrom?) {
                 val bit = BitmapDrawable(bitmap)

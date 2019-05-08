@@ -1,8 +1,5 @@
 package com.khtn.androidcamp
 
-import android.annotation.SuppressLint
-import android.app.PendingIntent.getActivity
-import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -10,7 +7,6 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_setting_background.*
-import android.content.SharedPreferences
 import android.app.Activity
 import android.content.Intent
 
@@ -23,15 +19,10 @@ class SettingBackgroundActivity : AppCompatActivity() {
 
     var backgroundIndex = 0
 
-    lateinit var sharedPreferences: SharedPreferences
-
-    lateinit var prefEditor: SharedPreferences.Editor
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_setting_background)
-
-        initSharePreference()
 
         setupSpinner()
 
@@ -41,23 +32,12 @@ class SettingBackgroundActivity : AppCompatActivity() {
 
     }
 
-    @SuppressLint("CommitPrefEdits")
-    private fun initSharePreference() {
-        sharedPreferences = getSharedPreferences(PREFERCENCES_NAME, Context.MODE_PRIVATE)
-
-        prefEditor = sharedPreferences.edit()
-
-        getCurrentIndex() // get current index
-
-    }
 
     private fun submitBackgroundUrlToSharedPref() {
 
-        prefEditor.putString(BACKGROUND_KEY, selectedBackground)
+        SharedPreferencesHelper.saveString(BACKGROUND_KEY, selectedBackground)
 
-        prefEditor.putInt(BACKGROUND_INDEX, backgroundIndex)
-
-        prefEditor.apply()
+        SharedPreferencesHelper.saveInt(BACKGROUND_INDEX, backgroundIndex)
 
 
         /**
@@ -88,14 +68,13 @@ class SettingBackgroundActivity : AppCompatActivity() {
                 backgroundIndex = position
             }
         }
+        getCurrentIndex()
 
         spinner.setSelection(backgroundIndex) // set current background url
     }
 
     private fun getCurrentIndex() {
-        if (sharedPreferences.contains(BACKGROUND_KEY)) {
-            backgroundIndex = sharedPreferences.getInt(BACKGROUND_INDEX, 0) // get saved Index from SsharedPreferences
-        }
+       backgroundIndex = SharedPreferencesHelper.readInt(BACKGROUND_INDEX,3)
     }
 
 }
