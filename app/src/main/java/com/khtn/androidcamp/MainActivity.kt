@@ -93,8 +93,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun removeItem(position: Int) {
-        students.removeAt(position)
-        studentAdapter.notifyItemRemoved(position)
+        dao.delete(students[position]) // remove from Room database  // 
+
+        students.removeAt(position) // remove student list on RAM
+
+        studentAdapter.notifyItemRemoved(position) // notify data change
         Timer(false).schedule(500) {
             runOnUiThread {
                 studentAdapter.setData(students)
