@@ -32,7 +32,7 @@ interface StudentDAO {
     fun delete(todo: Student)
 
     @Update
-    fun updateTodo(vararg todos: Student)
+    fun update( student: Student)
 
     @Query("DELETE FROM student")
     fun deleteAllStudent()
