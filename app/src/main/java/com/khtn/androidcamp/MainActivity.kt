@@ -1,15 +1,19 @@
 package com.khtn.androidcamp
 
 import android.annotation.SuppressLint
+import android.arch.persistence.room.Room
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import com.khtn.androidcamp.ROOM.AppDatabase
+import com.khtn.androidcamp.ROOM.StudentDAO
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 import kotlin.concurrent.schedule
+import android.app.Activity
 
 
 @SuppressLint("SetTextI18n")
@@ -19,22 +23,43 @@ class MainActivity : AppCompatActivity() {
 
     var students: ArrayList<Student> = ArrayList()
     lateinit var studentAdapter: StudentAdapter
-
+    lateinit var dao: StudentDAO
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // init clone student data
-        addStudents()
+        initRoomDatabase()
 
-        // setup layout manager and recyclerview
+        setupRecyclerView()
+
+        getStudents()
+
+
+        fab.setOnClickListener {
+            val intent = Intent(this@MainActivity, AddStudentActivity::class.java)
+            startActivityForResult(intent, CODE_ADD_NEW_STUDENT)
+        }
+
+    }
+
+    private fun initRoomDatabase() {
+        val db = Room.databaseBuilder(
+            applicationContext,
+            AppDatabase::class.java, DATABASE_NAME
+        ).allowMainThreadQueries()
+            .build()
+        dao = db.studentDAO()
+    }
+
+    /**
+     * setup layout manager and recyclerview
+     */
+    private fun setupRecyclerView() {
         rvStudents.layoutManager = LinearLayoutManager(this) as RecyclerView.LayoutManager?
 
         studentAdapter = StudentAdapter(students, this)
 
         rvStudents.adapter = studentAdapter
-
-
 
         studentAdapter.setListener(studentItemCLickListener)
     }
@@ -42,15 +67,16 @@ class MainActivity : AppCompatActivity() {
     private val studentItemCLickListener = object : StudentItemCLickListener {
         override fun onItemCLicked(position: Int) {
 
-            val intent = Intent(this@MainActivity,ProfileActivity::class.java)
+            val intent = Intent(this@MainActivity, ProfileActivity::class.java)
             intent.putExtra(STUDENT_NAME_KEY, students[position].name)
             intent.putExtra(STUDENT_AVATAR_KEY, students[position].avatar)
             intent.putExtra(STUDENT_CLUB_KEY, students[position].classz)
             startActivity(intent)
 
         }
+
         override fun onItemLongCLicked(position: Int) {
-            
+
             val builder = AlertDialog.Builder(this@MainActivity)
             builder.setTitle("Confirmation")
                 .setMessage("Remove ${students[position].name} ?")
@@ -69,7 +95,7 @@ class MainActivity : AppCompatActivity() {
     private fun removeItem(position: Int) {
         students.removeAt(position)
         studentAdapter.notifyItemRemoved(position)
-        Timer("SettingUp", false).schedule(500) {
+        Timer(false).schedule(500) {
             runOnUiThread {
                 studentAdapter.setData(students)
                 studentAdapter.notifyDataSetChanged()
@@ -77,18 +103,30 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun addStudents() {
-        students.add(Student("Nguyen Quang Hai", " Ha Noi FC", R.drawable.quanghai))
-        students.add(Student("Bui Tien Dung", " Ha Noi FC", R.drawable.buitiendung))
-        students.add(Student("Duy Manh", " Ha Noi FC", R.drawable.duymanh))
-        students.add(Student("Cong Phuong", " HAGL FC", R.drawable.congphuong))
-        students.add(Student("Van Toan", " HAGL FC", R.drawable.vantoan))
-        students.add(Student("Huynh Duc", " Da Nang FC", R.drawable.huynhduc))
-        students.add(Student("Vinh Rau", " FAP TV", R.drawable.vinhrau))
-        students.add(Student("Cong Vinh", " Nghe An FC", R.drawable.conhvinh))
-        students.add(Student("Anh Duc", " Binh Duong FC",R.drawable.anhduc))
-        students.add(Student("Dinh Manh Ninh", "M4U", R.drawable.dmninh))
+
+    private fun getStudents() {
+        val students = dao.getAll() // get Students from ROOM database
+
+        this.students.addAll(students) // add to student list
+
+        studentAdapter.notifyDataSetChanged() // notify data changed
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == CODE_ADD_NEW_STUDENT && resultCode == Activity.RESULT_OK) {
+            val newStudentAdded = data?.extras?.getParcelable(STUDENT_OBJECT_KEY) as Student
+            handleOnNewStudentAdded(newStudentAdded)
+        }
+    }
+
+    /**
+     * append new data to student list and notify data change
+     */
+    private fun handleOnNewStudentAdded(student: Student) {
+        studentAdapter.appendData(student)
+    }
+
 }
 
 

@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_student.view.*
+import java.util.*
+import kotlin.concurrent.schedule
 
 /**
  * Created by Huu Hoang on 4/17/19.
@@ -27,7 +29,7 @@ class StudentAdapter(var items: ArrayList<Student>, val context: Context) : Recy
         studentViewHolder.tvName.text = "#$position ${items[position].name}"
         studentViewHolder.tvClass.text = items[position].classz
         Glide.with(context)
-            .load( items[position].avatar)
+            .load(items[position].avatar)
             .centerCrop()
             .placeholder(R.drawable.student_place_holder)
             .into(studentViewHolder.ivAvatar)
@@ -47,8 +49,13 @@ class StudentAdapter(var items: ArrayList<Student>, val context: Context) : Recy
         this.mListener = listener
     }
 
-    fun setData(items: ArrayList<Student>){
+    fun setData(items: ArrayList<Student>) {
         this.items = items
+    }
+
+    fun appendData(newStudentAdded: Student) {
+        this.items.add(newStudentAdded)
+        notifyItemInserted(items.size - 1)
     }
 
 }
