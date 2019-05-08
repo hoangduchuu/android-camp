@@ -5,44 +5,16 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         tools:ignore="HardcodedText"
+        android:id="@+id/lnBg"
         android:orientation="vertical"
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
-
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/tvUserName"
-            android:text="Hello World!"
-            android:textColor="#ad9ee8"
-            android:lines="2"
-            android:padding="2dp"
-            android:textSize="20dp"/>
-
-
-    <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/edtUserName"
-            android:text="UserName"
-            android:hint="Enter your User name"
-            android:textSize="12dp"
-            android:maxLines="3"
-            android:textColor="#a9e883"/>
-
-
-    <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Login"
-            android:id="@+id/btnLogin"
-            android:textColor="#a9e883"
-            android:padding="12dp"
-    />
-
-    <ImageView android:layout_width="100dp"
-               android:id="@+id/ivLogo"
-               android:layout_height="100dp"/>
+    <Button android:layout_width="match_parent"
+            android:textColor="#F7F6F6"
+            android:id="@+id/btnChange"
+            android:text="C H A N G E   B A C K G R O U N D"
+            android:background="@drawable/btn_submit_background"
+            android:layout_height="wrap_content"/>
 
 </LinearLayout>

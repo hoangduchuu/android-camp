@@ -2,28 +2,31 @@
 <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:padding="10dp"
 
         tools:context=".SettingBackgroundActivity">
 
-    <TextView android:layout_width="wrap_content"
-              android:id="@+id/tvUserInfo"
-              tools:text="abcdef"
-              android:textColor="@color/colorPrimary"
-              android:layout_height="wrap_content"/>
+    <Spinner android:layout_width="match_parent"
+             android:id="@+id/spinner"
+             tools:text="abcdef"
+             android:textColor="@color/colorPrimary"
+             android:layout_height="wrap_content"/>
 
-    <Button
-            android:layout_centerInParent="true"
-            android:background="@color/colorPrimaryDark"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Back to Main screen"
-            android:id="@+id/btnBack"
-            android:textColor="#a9e883"
-            android:padding="12dp"
-    />
+    <ImageView android:layout_width="150dp"
+               android:layout_centerInParent="true"
+               android:id="@+id/ivBackground"
+               android:background="@color/colorAccent"
+               android:layout_height="225dp"/>
+    <Button android:layout_width="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:text="S U B M I T"
+            android:id="@+id/btnSubmitBackground"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/btn_submit_background"
+            android:layout_height="wrap_content"/>
 
 
 </RelativeLayout>
