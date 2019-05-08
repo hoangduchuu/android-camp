@@ -40,6 +40,19 @@ class MainActivity : AppCompatActivity() {
             startActivityForResult(intent, CODE_ADD_NEW_STUDENT)
         }
 
+        fab.setOnLongClickListener {
+            dao.deleteAllStudent()
+            val size = students.size
+            if (size > 0) {
+                for (i in 0 until size) {
+                    students.removeAt(0)
+                }
+
+                studentAdapter.notifyItemRangeRemoved(0, size)
+            }
+            return@setOnLongClickListener false
+        }
+
     }
 
     private fun initRoomDatabase() {
