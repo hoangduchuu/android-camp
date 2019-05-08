@@ -69,7 +69,7 @@ class MainActivity : AppCompatActivity() {
 
             val intent = Intent(this@MainActivity, ProfileActivity::class.java)
             intent.putExtra(STUDENT_NAME_KEY, students[position].name)
-            intent.putExtra(STUDENT_AVATAR_KEY, students[position].avatar)
+            intent.putExtra(STUDENT_AVATAR_KEY, students[position].avatarOfTeacher)
             intent.putExtra(STUDENT_CLUB_KEY, students[position].classz)
             startActivity(intent)
 
@@ -93,7 +93,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun removeItem(position: Int) {
-        dao.delete(students[position]) // remove from Room database  // 
+        dao.delete(students[position]) // remove from Room database  //
 
         students.removeAt(position) // remove student list on RAM
 

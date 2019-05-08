@@ -39,7 +39,7 @@ class AddStudentActivity : AppCompatActivity() {
             // FIXME:  validate empty input value
             student.name = tvName.text.toString()
             student.classz = tvClass.text.toString()
-            student.avatar = teacherAvatar
+            student.avatarOfTeacher = teacherAvatar
 
             val studentDAO = db.studentDAO() // get DAO instance
             val id = studentDAO.insert(student) // insert our student object to ROOM database
