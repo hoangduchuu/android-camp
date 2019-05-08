@@ -103,6 +103,10 @@ class MainActivity : AppCompatActivity() {
             val myDialog = builder.create();
             myDialog.show()
         }
+
+        override fun onEditIconClicked(position: Int) {
+
+        }
     }
 
     private fun removeItem(position: Int) {
@@ -134,6 +138,18 @@ class MainActivity : AppCompatActivity() {
             val newStudentAdded = data?.extras?.getParcelable(STUDENT_OBJECT_KEY) as Student
             handleOnNewStudentAdded(newStudentAdded)
         }
+        if (requestCode == CODE_ADD_UPDATE_STUDENT && resultCode == Activity.RESULT_OK) {
+            val newStudentAdded = data?.extras?.getParcelable(STUDENT_OBJECT_KEY) as Student
+            handleOnStudentUpdated(newStudentAdded)
+        }
+    }
+
+    /**
+     * Update the item
+     */
+    private fun handleOnStudentUpdated(newStudentAdded: Student) {
+        // TODO : Update the updated item infomation
+
     }
 
     /**

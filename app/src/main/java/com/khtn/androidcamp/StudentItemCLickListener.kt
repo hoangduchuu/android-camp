@@ -7,4 +7,5 @@ package com.khtn.androidcamp
 interface StudentItemCLickListener {
     fun onItemCLicked(position: Int)
     fun onItemLongCLicked(position: Int)
+    fun onEditIconClicked(position: Int)
 }
