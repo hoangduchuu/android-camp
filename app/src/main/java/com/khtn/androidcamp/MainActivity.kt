@@ -8,10 +8,10 @@ import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import com.squareup.picasso.Picasso
-import com.squareup.picasso.Target
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.CustomTarget
+import com.bumptech.glide.request.transition.Transition
 import kotlinx.android.synthetic.main.activity_main.*
-import java.lang.Exception
 
 @SuppressLint("SetTextI18n")
 
@@ -43,23 +43,21 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+    @SuppressLint("CheckResult")
     private fun getBackground() {
 
         val backgroundUrl = SharedPreferencesHelper.readString(BACKGROUND_KEY)
 
-        // use Picasso library load image from internet
-        Picasso.get().load(backgroundUrl).into(object : Target {
-            override fun onPrepareLoad(placeHolderDrawable: Drawable?) {}
+        Glide.with(this)
+            .asBitmap()
+            .load(backgroundUrl).into(object : CustomTarget<Bitmap>() {
+                override fun onLoadCleared(placeholder: Drawable?) {}
 
-            override fun onBitmapFailed(e: Exception?, errorDrawable: Drawable?) {
-            }
-
-            override fun onBitmapLoaded(bitmap: Bitmap?, from: Picasso.LoadedFrom?) {
-                val bit = BitmapDrawable(bitmap)
-                lnBg.background = bit
-            }
-
-        })
+                override fun onResourceReady(bitmap: Bitmap, transition: Transition<in Bitmap>?) {
+                    val bit = BitmapDrawable(bitmap)
+                    lnBg.background = bit
+                }
+            })
     }
 
 

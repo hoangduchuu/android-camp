@@ -5,10 +5,10 @@ import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_setting_background.*
 import android.app.Activity
 import android.content.Intent
+import com.bumptech.glide.Glide
 
 
 class SettingBackgroundActivity : AppCompatActivity() {
@@ -63,7 +63,11 @@ class SettingBackgroundActivity : AppCompatActivity() {
             }
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                Picasso.get().load(backgroundUrls[position]).into(ivBackground) // load preview
+
+                Glide.with(this@SettingBackgroundActivity)
+                    .load(backgroundUrls[position])
+                    .into(ivBackground) // load preview
+                
                 selectedBackground = backgroundUrls[position] // set to global variable
                 backgroundIndex = position
             }
