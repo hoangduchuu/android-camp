@@ -1,8 +1,6 @@
 package com.khtn.androidcamp.ROOM
 
 import android.arch.persistence.room.*
-import com.khtn.androidcamp.Student
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.arch.persistence.room.OnConflictStrategy
 
 

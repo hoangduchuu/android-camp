@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
+import com.khtn.androidcamp.ROOM.Student
 import kotlinx.android.synthetic.main.item_student.view.*
 import java.util.*
 

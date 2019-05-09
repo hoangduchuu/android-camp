@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.bumptech.glide.Glide
+import com.khtn.androidcamp.ROOM.Student
 import kotlinx.android.synthetic.main.activity_add_student.*
 import kotlin.collections.ArrayList
 

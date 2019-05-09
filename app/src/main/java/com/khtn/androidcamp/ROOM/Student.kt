@@ -1,4 +1,4 @@
-package com.khtn.androidcamp
+package com.khtn.androidcamp.ROOM
 
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey

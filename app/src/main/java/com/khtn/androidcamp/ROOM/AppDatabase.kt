@@ -5,7 +5,6 @@ import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
 import android.content.Context
 import com.khtn.androidcamp.DATABASE_NAME
-import com.khtn.androidcamp.Student
 
 /**
  * Created by Huu Hoang on 5/7/19.
