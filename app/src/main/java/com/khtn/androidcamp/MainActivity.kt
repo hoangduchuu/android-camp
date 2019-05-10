@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity(), MyListener {
 
         setupRV()
 
-        initViews();
+        initViews()
     }
 
     private fun initViews() {
@@ -81,10 +81,11 @@ class MainActivity : AppCompatActivity(), MyListener {
      * ADD NEW
      */
     private fun handleSubmitNewStudent() {
-
+        val name = edtName.text.toString()
+        val age: Int = edtAge.text.toString().toInt()
         // TODO INSERT NEW STUDENT TO ROOM
 
-        students.add(Student(edtName.text.toString(), edtAge.text.toString().toInt()))
+        students.add(Student(name, age))
         adapter.notifyItemInserted(students.size - 1)
         rvInfo.scrollToPosition(students.size - 1)
 
@@ -95,10 +96,9 @@ class MainActivity : AppCompatActivity(), MyListener {
      * REMOVE ONE
      */
     private fun handleRemoveItemConfirmed(position: Int) {
-        students.removeAt(position)
-
         // TODO REMOVE  STUDENT FROM ROOM
 
+        students.removeAt(position)
         adapter.notifyItemRemoved(position)
         Timer().schedule(400) {
             runOnUiThread {
@@ -111,8 +111,7 @@ class MainActivity : AppCompatActivity(), MyListener {
      * READ List
      */
     private fun cloneData(): ArrayList<Student> {
-
-        // TODO GetLIST STUDENT FROM ROOM
+        // TODO GET LIST STUDENT FROM ROOM and DELETE BELOW CODE
 
         val students = ArrayList<Student>()
         for (x in 0..18) {
@@ -125,10 +124,11 @@ class MainActivity : AppCompatActivity(), MyListener {
      * UPDATE SELECTED ITEM
      */
     private fun handleUpdateButtonClicked() {
-
+        val name = edtName.text.toString()
+        val age: Int = edtAge.text.toString().toInt()
         // TODO UPDATE SELECTED ITEM TO ROOM
 
-        students[selectedItem] = Student(edtName.text.toString(), edtAge.text.toString().toInt())
+        students[selectedItem] = Student(name, age)
 
         adapter.notifyDataSetChanged()
 
