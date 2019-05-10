@@ -13,6 +13,7 @@ import kotlin.concurrent.schedule
 
 @SuppressLint("SetTextI18n")
 
+//reject em đi a.Hữu
 
 class MainActivity : AppCompatActivity(), MyListener {
     lateinit var adapter: StudentAdapter
