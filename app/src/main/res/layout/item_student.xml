@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:paddingStart="10dp"
+        android:paddingTop="10dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent" android:layout_height="wrap_content">
+    <TextView
+            android:layout_width="wrap_content"
+            tools:text="Huu Hoang"
+            android:id="@+id/tvName"
+            android:textColor="#FF5722"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            tools:text="18g"
+            android:layout_below="@id/edtName"
+            android:id="@+id/tvAge"
+            android:textColor="#3F51B5"
+            android:layout_height="wrap_content"/>
+    <LinearLayout android:layout_width="wrap_content"
+                  android:layout_alignParentEnd="true"
+                  android:orientation="horizontal"
+                  android:layout_height="wrap_content">
+        <ImageButton
+                android:layout_width="wrap_content"
+                android:padding="5dp"
+                android:id="@+id/btnEdit"
+                android:src="@android:drawable/ic_menu_edit"
+                android:layout_height="wrap_content"/>
+        <ImageButton
+                android:layout_width="wrap_content"
+                android:padding="5dp"
+                android:id="@+id/btnDelete"
+                android:src="@android:drawable/ic_delete"
+                android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+</RelativeLayout>
