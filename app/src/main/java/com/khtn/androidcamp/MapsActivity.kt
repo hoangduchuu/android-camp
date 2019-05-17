@@ -11,6 +11,8 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.model.*
+import android.content.Intent
+import android.net.Uri
 
 
 @SuppressLint("SetTextI18n")
@@ -110,8 +112,22 @@ class MapsActivity : AppCompatActivity(),
 
     override fun onPolylineClick(polylyne: Polyline?) {
         Toast.makeText(this, "onPolylineClicked", Toast.LENGTH_LONG).show()
+        openGoogleMap()
     }
 
+    /**
+     * Open google map with Lat-long
+     */
+    private fun openGoogleMap() {
+        val gmmIntentUri = Uri.parse("geo:10.762503, 106.682816")
+        val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
+        mapIntent.setPackage("com.google.android.apps.maps")
+        if (mapIntent.resolveActivity(packageManager) != null) {
+            startActivity(mapIntent)
+        }
+    }
+
+    
     /**
      * Add Polyline
      */
