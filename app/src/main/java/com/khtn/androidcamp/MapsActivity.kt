@@ -1,17 +1,29 @@
 package com.khtn.androidcamp
 
 import android.annotation.SuppressLint
+import android.content.pm.PackageManager
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
+
 
 @SuppressLint("SetTextI18n")
 
 
-class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
-    lateinit var mMap :GoogleMap
+class MapsActivity : AppCompatActivity(),
+    OnMapReadyCallback, GoogleMap.OnMarkerClickListener,
+    GoogleMap.OnInfoWindowClickListener, GoogleMap.OnMapClickListener {
+    lateinit var mMap: GoogleMap
+    @SuppressLint("MissingPermission")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_map)
@@ -23,6 +35,69 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
+        // Hàm được gọi khi Bản đổ đã sẵn sàng
         this.mMap = googleMap
+
+        setupMap()
+        setupMaker()
+    }
+
+    @SuppressLint("MissingPermission")
+    private fun setupMap() {
+        if (PermissionUtils.isHasLocationPermission(this)) {
+            mMap.isMyLocationEnabled = true
+        } else {
+            PermissionUtils.requestLocationPermission(this)
+        }
+        mMap.setOnMarkerClickListener(this)
+        mMap.setOnInfoWindowClickListener(this)
+        mMap.setOnMapClickListener(this)
+    }
+
+    private fun setupMaker() {
+        val khtn = LatLng(10.756586, 106.683936); // tọa độ DH KHTN
+
+        val markerOptions = MarkerOptions()
+        markerOptions.position(khtn)
+            .title("Trung tâm tin học ĐH KHTN")
+            .snippet("This is cool")
+            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
+            .alpha(0.8f)
+            .rotation(90f) // Setup thông số Maker
+
+        val marker = mMap.addMarker(markerOptions)
+
+        marker.showInfoWindow() // Hiển thị InfoWindow
+
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(khtn, 15f)); // Move di tuyển tới vị trí KHTN trên map
+    }
+
+    @SuppressLint("MissingPermission")
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            MY_PERMISSIONS_REQUEST_LOCATION -> {
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    mMap.isMyLocationEnabled = true // set current Location button
+                } else {
+                }
+            }
+        }
+
+    }
+
+    override fun onMapClick(p0: LatLng?) {
+        Toast.makeText(this, "onMapClick", Toast.LENGTH_LONG).show()
+
+    }
+
+    override fun onMarkerClick(maker: Marker?): Boolean {
+        Toast.makeText(this, "onMarkerClick", Toast.LENGTH_LONG).show()
+        maker?.showInfoWindow()
+        return true
+    }
+
+    override fun onInfoWindowClick(maker: Marker?) {
+        Toast.makeText(this, "onInfoWindowClick", Toast.LENGTH_LONG).show()
     }
 }
