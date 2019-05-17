@@ -10,10 +10,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
-import com.google.android.gms.maps.model.MarkerOptions
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.Marker
+import com.google.android.gms.maps.model.*
 
 
 @SuppressLint("SetTextI18n")
@@ -21,7 +18,10 @@ import com.google.android.gms.maps.model.Marker
 
 class MapsActivity : AppCompatActivity(),
     OnMapReadyCallback, GoogleMap.OnMarkerClickListener,
-    GoogleMap.OnInfoWindowClickListener, GoogleMap.OnMapClickListener {
+    GoogleMap.OnInfoWindowClickListener,
+    GoogleMap.OnMapClickListener,
+    GoogleMap.OnPolylineClickListener,
+    GoogleMap.OnInfoWindowLongClickListener {
     lateinit var mMap: GoogleMap
     @SuppressLint("MissingPermission")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,7 +51,9 @@ class MapsActivity : AppCompatActivity(),
         }
         mMap.setOnMarkerClickListener(this)
         mMap.setOnInfoWindowClickListener(this)
+        mMap.setOnInfoWindowLongClickListener(this)
         mMap.setOnMapClickListener(this)
+        mMap.setOnPolylineClickListener(this)
     }
 
     private fun setupMaker() {
@@ -99,5 +101,56 @@ class MapsActivity : AppCompatActivity(),
 
     override fun onInfoWindowClick(maker: Marker?) {
         Toast.makeText(this, "onInfoWindowClick", Toast.LENGTH_LONG).show()
+        addPolyLine()
     }
+
+    override fun onInfoWindowLongClick(maker: Marker?) {
+        addPolygon()
+    }
+
+    override fun onPolylineClick(polylyne: Polyline?) {
+        Toast.makeText(this, "onPolylineClicked", Toast.LENGTH_LONG).show()
+    }
+
+    /**
+     * Add Polyline
+     */
+    private fun addPolyLine() {
+        val latLng1 = LatLng(mMap.cameraPosition.target.latitude, mMap.cameraPosition.target.longitude)
+        val latLng2 = LatLng(
+            mMap.cameraPosition.target.latitude + 0.00211, mMap.cameraPosition.target.longitude + 0.0022
+        )
+        val latLng3 = LatLng(
+            mMap.cameraPosition.target.latitude + 0.00311, mMap.cameraPosition.target.longitude + 0.0012
+        )
+
+        mMap.addPolyline(
+            PolylineOptions()
+                .clickable(true)
+                .add(latLng1, latLng2, latLng3)
+        )
+    }
+
+    /**
+     * Add Polygon
+     */
+    private fun addPolygon() {
+        val latLng1 = LatLng(mMap.cameraPosition.target.latitude, mMap.cameraPosition.target.longitude)
+        val latLng2 = LatLng(
+            mMap.cameraPosition.target.latitude + 0.00211, mMap.cameraPosition.target.longitude + 0.0022
+        )
+        val latLng3 = LatLng(
+            mMap.cameraPosition.target.latitude + 0.00311, mMap.cameraPosition.target.longitude + 0.0012
+        )
+
+        val polygonOptions = PolygonOptions()
+
+        polygonOptions
+            .clickable(true)
+            .add(latLng1, latLng2, latLng3)
+
+        mMap.addPolygon(polygonOptions)
+    }
+
+
 }
