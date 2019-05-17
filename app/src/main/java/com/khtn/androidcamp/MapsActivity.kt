@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -46,11 +45,14 @@ class MapsActivity : AppCompatActivity(),
 
     @SuppressLint("MissingPermission")
     private fun setupMap() {
+
         if (PermissionUtils.isHasLocationPermission(this)) {
             mMap.isMyLocationEnabled = true
         } else {
             PermissionUtils.requestLocationPermission(this)
         }
+
+
         mMap.setOnMarkerClickListener(this)
         mMap.setOnInfoWindowClickListener(this)
         mMap.setOnInfoWindowLongClickListener(this)
@@ -63,11 +65,11 @@ class MapsActivity : AppCompatActivity(),
 
         val markerOptions = MarkerOptions()
         markerOptions.position(khtn)
-            .title("Trung tâm tin học ĐH KHTN")
-            .snippet("This is cool")
+            .title("Truờng Đại Học Khoa Học Tự Nhiên")
+            .snippet("227 Đường Nguyễn Văn Cừ, Phường 4, Quận 5")
             .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
-            .alpha(0.8f)
-            .rotation(90f) // Setup thông số Maker
+            .alpha(1.0f)
+             // Setup thông số Maker
 
         val marker = mMap.addMarker(markerOptions)
 
@@ -97,8 +99,26 @@ class MapsActivity : AppCompatActivity(),
 
     override fun onMarkerClick(maker: Marker?): Boolean {
         Toast.makeText(this, "onMarkerClick", Toast.LENGTH_LONG).show()
+
+        maker?.setIcon(BitmapDescriptorFactory.fromResource(getRandomMarkerIcon()))
+
+
+
         maker?.showInfoWindow()
         return true
+    }
+
+    private fun getRandomMarkerIcon(): Int {
+        val iconColors = mutableListOf<Int>().also {
+            it.add(R.drawable.marker)
+            it.add(R.drawable.marker2)
+            it.add(R.drawable.marker3)
+            it.add(R.drawable.marker4)
+            it.add(R.drawable.marker5)
+            it.add(R.drawable.marker6)
+            it.add(R.drawable.marker7)
+        }
+        return iconColors.random()
     }
 
     override fun onInfoWindowClick(maker: Marker?) {
@@ -127,7 +147,7 @@ class MapsActivity : AppCompatActivity(),
         }
     }
 
-    
+
     /**
      * Add Polyline
      */
