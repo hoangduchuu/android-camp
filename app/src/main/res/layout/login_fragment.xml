@@ -62,6 +62,7 @@
             android:layout_marginRight="-4dp"
             android:inputType="text"
             android:maxLength="50"
+            android:id="@+id/edtmail"
             android:hint="Enter your Username"
             android:maxLines="1"
             android:singleLine="true"
@@ -89,6 +90,7 @@
             android:maxLength="50"
             android:hint="Enter your password"
             android:maxLines="1"
+            android:id="@+id/edPassword"
             android:singleLine="true"
             android:textColor="@color/blue_grey_800"
             android:theme="@style/EditText.Green" />
@@ -103,6 +105,7 @@
             android:layout_height="55dp"
             android:layout_marginLeft="-4dp"
             android:layout_marginRight="-4dp"
+            android:id="@+id/btnLogin"
             android:background="@drawable/btn_rounded_green_300"
             android:text="S I G N  I N"
             android:textAllCaps="false"
