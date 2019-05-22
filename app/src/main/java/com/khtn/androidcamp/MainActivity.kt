@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity(),
 
     private fun addFirstFragment() {
         val fragmentTransaction = supportFragmentManager.beginTransaction()
-        fragmentTransaction.add(R.id.flContainer, LoginFragment())
+        fragmentTransaction.add(R.id.flContainer, DemoDatabaseFragment())
         fragmentTransaction.commit()
 
     }
