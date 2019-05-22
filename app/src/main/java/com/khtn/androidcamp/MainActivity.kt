@@ -8,22 +8,35 @@ import android.provider.MediaStore
 import android.support.v4.content.FileProvider
 import android.util.Log
 import com.bumptech.glide.Glide
+import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.File
+import java.io.FileInputStream
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
+import com.google.firebase.storage.StorageReference
+
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var currentPhotoPath: String
     val TAG = MainActivity::class.java.simpleName
 
+    private lateinit var mStorageRef: StorageReference
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         initView()
+
+        initFirebase()
+    }
+
+    private fun initFirebase() {
+        mStorageRef = FirebaseStorage.getInstance().getReference();
     }
 
     private fun initView() {
@@ -75,10 +88,24 @@ class MainActivity : AppCompatActivity() {
             // /storage/emulated/0/Android/data/com.khtn.androidcamp/files/Pictures/JPEG_20190516_175446_4830103794032036545.jpg
             Log.e(TAG, file.absolutePath)
             Glide.with(this).load(file).into(imageView)
+
+            // TODO upload photo
+
+            uploadWithFirebase(currentPhotoPath)
+
         }
     }
 
+    private fun uploadWithFirebase(currentPhotoPath: String) {
+        val stream = FileInputStream(File(currentPhotoPath))
+        val uploadTask = mStorageRef.child("IMAGES/${Calendar.getInstance().timeInMillis}.jpg").putStream(stream)
+        uploadTask.addOnFailureListener {
+           Log.e(TAG,"Upload Failed:  ${it.localizedMessage}")
+        }.addOnSuccessListener {
+            Log.e(TAG,"Upload Successful:  ${it.uploadSessionUri} ")
 
+        }
+    }
 
 
 }
