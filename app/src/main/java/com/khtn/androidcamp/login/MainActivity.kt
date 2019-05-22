@@ -1,9 +1,10 @@
-package com.khtn.androidcamp
+package com.khtn.androidcamp.login
 
 import android.annotation.SuppressLint
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import com.khtn.androidcamp.R
 
 @SuppressLint("SetTextI18n")
 
@@ -47,8 +48,16 @@ class MainActivity : AppCompatActivity(),
 
     override fun openRegisterScreen() {
         val fragmentTransaction = supportFragmentManager.beginTransaction()
-        fragmentTransaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
-        fragmentTransaction.replace(R.id.flContainer, RegisterFragment())
+        fragmentTransaction.setCustomAnimations(
+            R.anim.enter,
+            R.anim.exit,
+            R.anim.pop_enter,
+            R.anim.pop_exit
+        );
+        fragmentTransaction.replace(
+            R.id.flContainer,
+            RegisterFragment()
+        )
         fragmentTransaction.addToBackStack(RegisterFragment::class.java.simpleName)
         fragmentTransaction.commit()
     }
@@ -60,8 +69,16 @@ class MainActivity : AppCompatActivity(),
 
     override fun openForgotScreen() {
         val fragmentTransaction = supportFragmentManager.beginTransaction()
-        fragmentTransaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
-        fragmentTransaction.replace(R.id.flContainer, ForgetPasswordFragment())
+        fragmentTransaction.setCustomAnimations(
+            R.anim.enter,
+            R.anim.exit,
+            R.anim.pop_enter,
+            R.anim.pop_exit
+        );
+        fragmentTransaction.replace(
+            R.id.flContainer,
+            ForgetPasswordFragment()
+        )
         fragmentTransaction.addToBackStack(ForgetPasswordFragment::class.java.simpleName)
         fragmentTransaction.commit()
     }

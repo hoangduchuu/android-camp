@@ -1,12 +1,13 @@
-package com.khtn.androidcamp
+package com.khtn.androidcamp.login
 
+import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import com.khtn.androidcamp.BaseFragment
+import com.khtn.androidcamp.R
+import com.khtn.androidcamp.chat.ChatActivity
 import kotlinx.android.synthetic.main.login_fragment.*
 
 /**
@@ -19,7 +20,7 @@ class LoginFragment : BaseFragment() {
         fun openForgotScreen()
     }
 
-    lateinit var mListener: LoginFragment.Listener
+    lateinit var mListener: Listener
 
     lateinit var mAuth: FirebaseAuth
 
@@ -60,6 +61,7 @@ class LoginFragment : BaseFragment() {
                     Toast.makeText(context,"Login Failed: ${it.localizedMessage}", Toast.LENGTH_SHORT).show()
                 }.addOnSuccessListener {
                     Toast.makeText(context,"Login success: ${it.user.email}", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(activity,ChatActivity::class.java))
                 }.addOnCanceledListener {
                     Toast.makeText(context,"Login Canceled ", Toast.LENGTH_SHORT).show()
                 }
@@ -67,7 +69,7 @@ class LoginFragment : BaseFragment() {
         }
     }
 
-    fun setListener(listener: LoginFragment.Listener) {
+    fun setListener(listener: Listener) {
         mListener = listener
     }
 

@@ -1,9 +1,11 @@
-package com.khtn.androidcamp
+package com.khtn.androidcamp.login
 
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import com.khtn.androidcamp.BaseFragment
+import com.khtn.androidcamp.R
 import kotlinx.android.synthetic.main.register_fragment.*
 
 /**

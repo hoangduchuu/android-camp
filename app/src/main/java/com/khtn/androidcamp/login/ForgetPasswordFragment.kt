@@ -1,12 +1,10 @@
-package com.khtn.androidcamp
+package com.khtn.androidcamp.login
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import com.khtn.androidcamp.BaseFragment
+import com.khtn.androidcamp.R
 import kotlinx.android.synthetic.main.forget_password_fragment.*
-import kotlinx.android.synthetic.main.login_fragment.*
 
 /**
  * Created by Huu Hoang on 4/25/19.
