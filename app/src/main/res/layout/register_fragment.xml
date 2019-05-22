@@ -10,18 +10,18 @@
 
     <View
             android:layout_width="0dp"
-            android:layout_height="@dimen/spacing_middle" />
+            android:layout_height="@dimen/spacing_middle"/>
 
     <ImageView
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_gravity="center_horizontal"
             android:src="@drawable/logo_small"
-            android:tint="@color/green_300" />
+            android:tint="@color/green_300"/>
 
     <View
             android:layout_width="0dp"
-            android:layout_height="@dimen/spacing_large" />
+            android:layout_height="@dimen/spacing_large"/>
 
     <TextView
             android:layout_width="wrap_content"
@@ -31,7 +31,7 @@
             android:text="Welcome to Android"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
             android:textColor="@color/green_300"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
 
     <TextView
             android:layout_width="wrap_content"
@@ -40,28 +40,29 @@
             android:layout_marginTop="@dimen/spacing_medium"
             android:text="Enter Register Information"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
-            android:textColor="@color/blue_grey_300" />
+            android:textColor="@color/blue_grey_300"/>
 
     <View
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_weight="1" />
+            android:layout_weight="1"/>
     <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="-4dp"
             android:layout_marginRight="-4dp"
             android:inputType="text"
+            android:id="@+id/edtName"
             android:maxLength="50"
             android:hint="Enter your Name"
             android:maxLines="1"
             android:singleLine="true"
             android:textColor="@color/blue_grey_800"
-            android:theme="@style/EditText.Green" />
+            android:theme="@style/EditText.Green"/>
 
     <View
             android:layout_width="0dp"
-            android:layout_height="@dimen/spacing_mlarge" />
+            android:layout_height="@dimen/spacing_mlarge"/>
 
     <TextView
             android:layout_width="wrap_content"
@@ -69,7 +70,7 @@
             android:text="USERNAME"
             android:textAlignment="center"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
-            android:textColor="@color/blue_grey_200" />
+            android:textColor="@color/blue_grey_200"/>
 
     <EditText
             android:layout_width="match_parent"
@@ -77,16 +78,17 @@
             android:layout_marginLeft="-4dp"
             android:layout_marginRight="-4dp"
             android:inputType="text"
+            android:id="@+id/edtMail"
             android:maxLength="50"
-            android:hint="Enter your Username"
+            android:hint="Enter your Email"
             android:maxLines="1"
             android:singleLine="true"
             android:textColor="@color/blue_grey_800"
-            android:theme="@style/EditText.Green" />
+            android:theme="@style/EditText.Green"/>
 
     <View
             android:layout_width="0dp"
-            android:layout_height="@dimen/spacing_mlarge" />
+            android:layout_height="@dimen/spacing_mlarge"/>
 
     <TextView
             android:layout_width="wrap_content"
@@ -94,7 +96,7 @@
             android:text="PASSWORD"
             android:textAlignment="center"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
-            android:textColor="@color/blue_grey_200" />
+            android:textColor="@color/blue_grey_200"/>
 
     <EditText
             android:layout_width="match_parent"
@@ -104,30 +106,32 @@
             android:inputType="textPassword"
             android:maxLength="50"
             android:hint="Enter your password"
+            android:id="@+id/edPassword"
             android:maxLines="1"
             android:singleLine="true"
             android:textColor="@color/blue_grey_800"
-            android:theme="@style/EditText.Green" />
+            android:theme="@style/EditText.Green"/>
 
 
     <View
             android:layout_width="0dp"
-            android:layout_height="@dimen/spacing_mxlarge" />
+            android:layout_height="@dimen/spacing_mxlarge"/>
 
     <Button
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:layout_marginLeft="-4dp"
+            android:id="@+id/btnRegister"
             android:layout_marginRight="-4dp"
             android:background="@drawable/btn_rounded_green_300"
             android:text="R E G I S T E R"
             android:textAllCaps="false"
             android:textColor="@android:color/white"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
 
     <View
             android:layout_width="0dp"
-            android:layout_height="@dimen/spacing_medium" />
+            android:layout_height="@dimen/spacing_medium"/>
 
     <LinearLayout
             android:id="@+id/sign_up_for_account"
@@ -143,14 +147,14 @@
                 android:layout_height="wrap_content"
                 android:text="HAVE ACCOUNT? LOGIN NOW"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
-                android:textColor="@color/blue_grey_400" />
+                android:textColor="@color/blue_grey_400"/>
 
 
     </LinearLayout>
 
     <View
             android:layout_width="0dp"
-            android:layout_height="@dimen/spacing_xlarge" />
+            android:layout_height="@dimen/spacing_xlarge"/>
 
 
 </LinearLayout>
