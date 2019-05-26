@@ -1,16 +1,20 @@
 package com.khtn.androidcamp.chat
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
+import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
 
-import com.google.firebase.database.ChildEventListener
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
 import com.khtn.androidcamp.R
+import com.khtn.androidcamp.login.LoginActivity
+import com.khtn.androidcamp.models.User
+import com.khtn.androidcamp.profile.ProfileActivity
+import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog
 import kotlinx.android.synthetic.main.activity_chat2.*
 
 import java.util.Calendar
@@ -18,6 +22,7 @@ import java.util.Calendar
 class ChatActivity : AppCompatActivity() {
     private val firebaseDatabase = FirebaseDatabase.getInstance()
     private val rootDB = firebaseDatabase.reference
+    lateinit var mAuth: FirebaseAuth
 
     private var adapter: ChatAdapter? = null
 
@@ -38,6 +43,16 @@ class ChatActivity : AppCompatActivity() {
         setupRecyclerView()
 
         registerListener()
+
+        checkUser()
+    }
+
+    private fun checkUser() {
+        mAuth = FirebaseAuth.getInstance()
+        val user = FirebaseAuth.getInstance().currentUser
+        if (user == null) {
+            startActivity(Intent(this, LoginActivity::class.java))
+        }
     }
 
     private fun initViews() {

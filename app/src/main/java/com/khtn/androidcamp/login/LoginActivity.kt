@@ -9,7 +9,7 @@ import com.khtn.androidcamp.R
 @SuppressLint("SetTextI18n")
 
 
-class MainActivity : AppCompatActivity(),
+class LoginActivity : AppCompatActivity(),
     LoginFragment.Listener,
     RegisterFragment.Listener, ForgetPasswordFragment.Listener {
     override fun onCreate(savedInstanceState: Bundle?) {
