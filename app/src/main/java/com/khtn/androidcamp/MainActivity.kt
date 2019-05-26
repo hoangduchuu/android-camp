@@ -28,7 +28,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun initView() {
         btnCapture.setOnClickListener { takePicture() }
-        btnSaveImage.setOnClickListener {}
+        btnSaveImage.setOnClickListener {
+            SaveImageTask().execute(currentPhotoPath)
+        }
     }
 
 

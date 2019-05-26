@@ -21,12 +21,11 @@
                   android:layout_height="wrap_content">
         <Button android:layout_width="wrap_content"
                 android:id="@+id/btnCapture"
-                android:text="Captuer"
+                android:text="Capture "
                 android:layout_height="wrap_content"/>
         <Button android:layout_width="wrap_content"
                 android:id="@+id/btnSaveImage"
-                android:visibility="gone"
-                android:text="Captuer"
+                android:text="Save Image"
                 android:layout_height="wrap_content"/>
 
     </LinearLayout>
