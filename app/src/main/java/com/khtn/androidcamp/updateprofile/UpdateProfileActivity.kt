@@ -35,16 +35,7 @@ class UpdateProfileActivity : AppCompatActivity() {
         val mail = edtmail.text.toString().trim()
         val phone = edtPhone.text.toString().trim()
 
-        databaseRef
-            .child("Users")
-            .child(mAuth.currentUser?.uid!!)
-            .child("email")
-            .setValue(mail)
-        databaseRef
-            .child("Users")
-            .child(mAuth.currentUser?.uid!!)
-            .child("phone")
-            .setValue(phone)
+        // TODO update with firebase and start ChatActivity 
 
     }
 
