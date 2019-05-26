@@ -5,7 +5,10 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -13,8 +16,7 @@ import com.google.firebase.database.*
 import com.khtn.androidcamp.R
 import com.khtn.androidcamp.login.LoginActivity
 import com.khtn.androidcamp.models.User
-import com.khtn.androidcamp.profile.ProfileActivity
-import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog
+import com.khtn.androidcamp.updateprofile.UpdateProfileActivity
 import kotlinx.android.synthetic.main.activity_chat2.*
 
 import java.util.Calendar
@@ -25,6 +27,8 @@ class ChatActivity : AppCompatActivity() {
     lateinit var mAuth: FirebaseAuth
 
     private var adapter: ChatAdapter? = null
+
+    lateinit var headerView: View
 
     private val onSubmitChatListener = View.OnClickListener {
         //todo push
@@ -57,6 +61,7 @@ class ChatActivity : AppCompatActivity() {
 
     private fun initViews() {
         btnSubmitChat.setOnClickListener(onSubmitChatListener)
+        headerView = nav_view.inflateHeaderView(R.layout.nav_header)
     }
 
     private fun setupRecyclerView() {
@@ -68,6 +73,9 @@ class ChatActivity : AppCompatActivity() {
     }
 
     private fun registerListener() {
+        mAuth = FirebaseAuth.getInstance()
+
+        // data chat
         rootDB.child("Messages").addChildEventListener(object : ChildEventListener {
             override fun onChildAdded(dataSnapshot: DataSnapshot, s: String?) {
                 if (dataSnapshot.exists()) {
@@ -97,6 +105,64 @@ class ChatActivity : AppCompatActivity() {
 
             }
         })
+
+
+        // data User INFO
+        rootDB.child("Users").child(mAuth.currentUser?.uid!!)
+            .addValueEventListener(
+                object : ValueEventListener {
+                    override fun onCancelled(e: DatabaseError) {
+
+                    }
+
+                    override fun onDataChange(p0: DataSnapshot) {
+                        if (p0.exists()) {
+                            val user = p0.getValue(User::class.java) as User
+                            setUserInfo(user)
+                        }
+                    }
+
+                }
+            )
+    }
+
+    private fun setUserInfo(user: User) {
+        val tvFullName = headerView.findViewById<TextView>(R.id.tvFullName)
+        val tvPhone = headerView.findViewById<TextView?>(R.id.tvPhone)
+        val tvEmail = headerView.findViewById<TextView>(R.id.tvEmail)
+        tvEmail.setOnClickListener(
+            object : View.OnClickListener {
+                override fun onClick(v: View?) {
+                    Toast.makeText(this@ChatActivity, "abcdef", Toast.LENGTH_SHORT).show()
+                }
+
+            }
+        )
+
+        tvFullName.text = user.fullName
+        tvPhone?.text = user.phone.toString()
+        tvEmail.text = user.email
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        super.onCreateOptionsMenu(menu)
+        val inflater = menuInflater
+        inflater.inflate(com.khtn.androidcamp.R.menu.drawer_view, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        super.onOptionsItemSelected(item)
+        when (item?.itemId) {
+            R.id.nav_menu_edit -> {
+                startActivity(Intent(this@ChatActivity, UpdateProfileActivity::class.java))
+                return true
+            }
+            else -> {
+                return true
+            }
+        }
+
     }
 
     companion object {

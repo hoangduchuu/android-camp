@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:clickable="true"
+        android:focusableInTouchMode="true"
+        android:background="@color/amber_100"
+        android:layout_height="wrap_content" android:focusable="true">
+
+    <com.mikhaellopez.circularimageview.CircularImageView
+            android:layout_width="100dp"
+            android:layout_gravity="center"
+            android:src="@drawable/photo_male_7"
+            android:layout_height="100dp"/>
+    <TextView android:layout_width="wrap_content"
+              android:layout_gravity="center"
+              android:clickable="true"
+              tools:text="HUU"
+              android:focusableInTouchMode="true"
+              android:id="@+id/tvFullName"
+              android:layout_height="wrap_content"
+              android:focusable="true"/>
+    <TextView android:layout_width="wrap_content"
+              android:layout_gravity="center"
+              android:clickable="true"
+              tools:text="abc@gmail.com"
+              android:focusableInTouchMode="true"
+              android:id="@+id/tvEmail"
+              android:layout_height="wrap_content"
+              android:focusable="true"/>
+    <TextView android:layout_width="wrap_content"
+              android:layout_gravity="center"
+              android:clickable="true"
+              tools:text="0982882992"
+              android:focusableInTouchMode="true"
+              android:id="@+id/tvPhone"
+              android:layout_height="wrap_content"
+              android:focusable="true"/>
+
+
+</LinearLayout>

@@ -9,6 +9,6 @@ class User(
     var userName: String? = "",
     var id: String? = "",
     var email: String? = "",
-    var phone: Long? = 0
+    var phone: String? = ""
 ) {
 }
