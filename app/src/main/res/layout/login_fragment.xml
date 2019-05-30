@@ -50,7 +50,8 @@
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="USERNAME"
+            android:text="email"
+            android:textAllCaps="true"
             android:textAlignment="center"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
             android:textColor="@color/blue_grey_200" />
@@ -63,7 +64,7 @@
             android:inputType="text"
             android:maxLength="50"
             android:id="@+id/edtmail"
-            android:hint="Enter your Username"
+            android:hint="Enter your email"
             android:maxLines="1"
             android:singleLine="true"
             android:textColor="@color/blue_grey_800"

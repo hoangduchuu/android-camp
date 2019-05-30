@@ -17,6 +17,7 @@ class LoginFragment : BaseFragment() {
     interface Listener {
         fun openRegisterScreen()
         fun openForgotScreen()
+        fun openDemoScreen()
     }
 
     lateinit var mListener: LoginFragment.Listener
@@ -60,6 +61,7 @@ class LoginFragment : BaseFragment() {
                     Toast.makeText(context,"Login Failed: ${it.localizedMessage}", Toast.LENGTH_SHORT).show()
                 }.addOnSuccessListener {
                     Toast.makeText(context,"Login success: ${it.user.email}", Toast.LENGTH_SHORT).show()
+                    mListener.openDemoScreen()
                 }.addOnCanceledListener {
                     Toast.makeText(context,"Login Canceled ", Toast.LENGTH_SHORT).show()
                 }

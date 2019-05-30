@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.demo_databse_fragment.*
  * Created by Huu Hoang on 4/25/19.
  */
 class DemoDatabaseFragment : BaseFragment() {
+    val MSSV : String = "08201000"
     interface Listener {
         fun openLoginScreen()
     }
@@ -53,7 +54,7 @@ class DemoDatabaseFragment : BaseFragment() {
 
         btUpdate.setOnClickListener {
             val name = edtInput.text.toString()
-            reference.child("name").setValue(name)
+            reference.child("name").child(MSSV).setValue(name)
         }
 
     }
@@ -66,7 +67,16 @@ class DemoDatabaseFragment : BaseFragment() {
 
             override fun onDataChange(p0: DataSnapshot) {
                 if (p0.exists()) {
-                    tvInfo.text = p0.value as String
+                    if (p0.hasChildren()){
+                        for (p in p0.children){
+                            if (p.key == MSSV) {
+                                tvInfo.text = p.value as String
+                            } else {
+                                tvInfo.text = "Chưa có MSSV trên Firebase"
+                            }
+                        }
+                    }
+
                 }
             }
 

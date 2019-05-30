@@ -1,9 +1,10 @@
 package com.khtn.androidcamp
 
 import android.annotation.SuppressLint
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
 
 @SuppressLint("SetTextI18n")
 
@@ -19,8 +20,14 @@ class MainActivity : AppCompatActivity(),
     }
 
     private fun addFirstFragment() {
+        var fragment: Fragment
+        if (FirebaseAuth.getInstance().currentUser != null) {
+            fragment = DemoDatabaseFragment()
+        } else {
+            fragment = LoginFragment();
+        }
         val fragmentTransaction = supportFragmentManager.beginTransaction()
-        fragmentTransaction.add(R.id.flContainer, DemoDatabaseFragment())
+        fragmentTransaction.add(R.id.flContainer, fragment)
         fragmentTransaction.commit()
 
     }
@@ -45,6 +52,14 @@ class MainActivity : AppCompatActivity(),
         }
     }
 
+    override fun openDemoScreen() {
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        fragmentTransaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
+        fragmentTransaction.replace(R.id.flContainer, DemoDatabaseFragment())
+        fragmentTransaction.addToBackStack(DemoDatabaseFragment::class.java.simpleName)
+        fragmentTransaction.commit()
+    }
+
     override fun openRegisterScreen() {
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         fragmentTransaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
@@ -54,7 +69,7 @@ class MainActivity : AppCompatActivity(),
     }
 
     override fun openLoginScreen() {
-      onBackPressed()
+        onBackPressed()
 
     }
 
