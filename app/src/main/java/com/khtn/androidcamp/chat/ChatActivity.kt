@@ -56,6 +56,8 @@ class ChatActivity : AppCompatActivity() {
         val user = FirebaseAuth.getInstance().currentUser
         if (user == null) {
             startActivity(Intent(this, LoginActivity::class.java))
+        }else{
+            getInfoUser()
         }
     }
 
@@ -106,7 +108,9 @@ class ChatActivity : AppCompatActivity() {
             }
         })
 
+    }
 
+    private fun getInfoUser(){
         // data User INFO
         rootDB.child("Users").child(mAuth.currentUser?.uid!!)
             .addValueEventListener(
