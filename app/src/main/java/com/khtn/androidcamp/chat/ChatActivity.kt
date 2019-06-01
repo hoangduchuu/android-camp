@@ -64,6 +64,11 @@ class ChatActivity : AppCompatActivity() {
     private fun initViews() {
         btnSubmitChat.setOnClickListener(onSubmitChatListener)
         headerView = nav_view.inflateHeaderView(R.layout.nav_header)
+
+        btnLogOut.setOnClickListener {
+            mAuth.signOut()
+            startActivity(Intent(this,LoginActivity::class.java))
+        }
     }
 
     private fun setupRecyclerView() {
